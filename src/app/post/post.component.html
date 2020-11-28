@@ -1,0 +1,30 @@
+<div class="row" style="margin-top: 200px;">
+    <div class="col-3"></div>
+<div class="col-6">
+    <input type="text" placeholder="search post..." class="form-control float-right" (keyup.enter)="search($event)" style="width: 150px;">
+    <table class="table table-bordered" style="width:100%">
+        <ng-container *ngFor="let post of posts">
+            <tr style="background-color: aqua;">
+                <th>{{post.postText}}</th>
+                <th>{{post.userName}}</th>
+                <th>{{post.date}}</th>
+                <th>{{post.totalComments}}</th>
+            </tr>
+            <tr *ngFor="let comment of post.comments">
+                <td ><span style="margin-left: 15px;">{{comment.commentName}}</span></td>
+                <td>{{comment.userName}}</td>
+                <td>{{comment.date}}</td>
+                <td>{{comment.like}} -- {{comment.disLike}} </td>
+            </tr>
+        </ng-container>
+    </table>
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <ng-container *ngFor="let number of totalPosts">
+            <a *ngIf="number>0" (click)="getPostsNewPage(number)">{{number}}</a>
+        </ng-container>
+        <a href="#">&raquo;</a>
+      </div>
+</div>
+<div class="col-3"></div>
+</div>
